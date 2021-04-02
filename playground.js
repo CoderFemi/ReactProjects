@@ -55,7 +55,7 @@ class Teacher extends Person {
 }
 const teacherOne = new Teacher('Paulinho', 40)
 
-console.log(teacherOne.render())
+// console.log(teacherOne.render())
 
 // FUNCTIONAL CLASS ALTERNATIVE
 const Human = (head, eyes) => {
@@ -73,3 +73,27 @@ const humanOne = Human('one', 'two')
 // console.log(humanOne.describeMe())
 
 
+// DESTRUCTURING EXAMPLES
+const myCar = { type: 'Tesla', origin: 'United State of America' }
+const cars = [
+    { type: 'Honda', origin: 'Japan' },
+    { type: 'Toyota', origin: 'Japan' },
+    { type: 'Peugeot', origin: 'France' },
+    { type: 'Audi', origin: 'Germany' },
+    { type: 'Nissan', origin: 'Japan' },
+    { type: 'Volkswagen', origin: 'Germany' },
+    { type: 'Tesla', origin: 'America' }
+]
+
+const [carOne, carTwo, carThree, carFour, carFive, carSix] = cars
+// console.log(carOne.origin)
+const findCar = ([carOne, carTwo, carThree]) => {
+    console.log(`My car is a ${carOne.type}, made in ${carOne.origin}`)
+}
+// findCar(cars)
+
+const findMyCar = ({ type, origin }) => {
+    console.log(`My car is a ${type}, made in ${origin}`)
+}
+
+findMyCar(myCar)
