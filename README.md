@@ -59,3 +59,24 @@
 * This new syntax removes the need for calling the constructor function when setting up new properties in a class, and also the `this` keyword is not required at all when assigning to variables.
 * Also an arrow function is used to define methods. This ensures the `this` reference always points to the instance that was created, removing the need for manually binding the this object to the method.
 * A babel plugin, `transform-class-properties` is installed and configured to compile this new feature.
+
+## SCSS
+SCSS provides more features than basic CSS. 
+* Variables can be used to store values, which can be later referenced in the styles. 
+* Code factoring is possible by using base files and partials to organise styles according to the different components or elements that are being styled. The `import` keyword is used to import partials into the base file.
+* The BEM - `Body Element Modifier` naming convention is used to define classNames that group related content.
+
+## REACT-ROUTER
+The React-router implements client-side routing. 
+* With server-side routing, a request to update the user interface has to be made to the server everytime a url is visited.
+* With client-side routing, only one trip is made to the server the first time, to load all assets needed. Subsequent changes to the user interface are handled with client-side javascript, removing and rendering components as needed without a full page refresh.
+* React-router-dom is the version used for web apps. When this has been installed, named exports such as `BrowserRouter` and `Route` are imported and used to define routes. `Switch` conditionally checks the routes to find a match for the requested route. `Link` and `NavLink` are used for navigation. These components are defined so that the server is not visited when any of the links are clicked. It implements the preventDefault eventlistener method under the hood. To visit external data sources, the html anchor tag is used as usual.
+* A webpack setting of `historyApiFallback:true` is configured so that the application does not visit the server anymore, rather the index.html file is served up for every route visited, and the bundle.js file which has been loaded in handles the routing as required.
+* A prop of `exact:true` has to be specified for the root page to prevent all other components from being rendered alongside.
+### Query Strings and URL Parameters
+* React-router passes props through to every component rendered on a route. The props object contains various properties which can be used to access query strings and params, as well as carry out location redirects.
+
+## REDUX
+* An app with a one-tree view - only one ancestor component - manages state in that component and communicates down the hierarchy with other components that need access to data. But the problem is components in this type of hierarchy are not really usable. A child component that relies on a parent for props, cannot be re-used elsewhere because it will not have access to the data it needs to render and will not be able to use methods to change the state in the parent.
+* In a multiple-tree view, component state is not feasible, state is rather managed with a `Redux Store`. A store is just an object containing all the data that needs to be accessed and changed. It's centralised and independent of all the components, and any component that needs to access state communicates to the store for data. This makes components reusable anywhere on the page, without having to rely on a parent for state management.
+
