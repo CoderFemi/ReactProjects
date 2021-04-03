@@ -85,3 +85,7 @@ The React-router implements client-side routing.
 * `subscribe()` watches for changes anytime an action is sent to the store, and any operation can be executed within the callback passed in. To unsubscribe, the subscribe function is saved to a variable, and that variable is called to unsubscribe from the store.
 * An `action generator` is a function wrapper that is called to dispatch actions to the store. It's easier to call a function than to manually define the action object every single time.
 * `combineReducers()` as the method name suggests, is used to combine multiple reducers, for complex apps in which various types of state need to be tracked/managed, and associated actions executed.
+* Side Note: The object rest spread operator is useful for spreading an existing object into a new object, but also has the functionality to override any existing properties by defining new ones after the spread. It requires a babel plugin to function in React.
+
+## React - Redux
+* Connecting React to Redux to access and manipulate the store involves the use of Higher Order Components (HOC). A HOC is simply a component which renders another component. It is implemented by using a wrapper function which takes in the component - that needs to access the store - as an argument. It then returns a new component that renders an instance of the passed in component. The rendered component will thus have access to the store.
