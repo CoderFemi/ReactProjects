@@ -86,6 +86,16 @@ The React-router implements client-side routing.
 * An `action generator` is a function wrapper that is called to dispatch actions to the store. It's easier to call a function than to manually define the action object every single time.
 * `combineReducers()` as the method name suggests, is used to combine multiple reducers, for complex apps in which various types of state need to be tracked/managed, and associated actions executed.
 * Side Note: The object rest spread operator is useful for spreading an existing object into a new object, but also has the functionality to override any existing properties by defining new ones after the spread. It requires a babel plugin to function in React.
+* Redux Dev-Tools are also available as a Chrome Extension. Additional code gotten from the library docs website has to be added to the store file configuration for it to work.
 
 ## React - Redux
-* Connecting React to Redux to access and manipulate the store involves the use of Higher Order Components (HOC). A HOC is simply a component which renders another component. It is implemented by using a wrapper function which takes in the component - that needs to access the store - as an argument. It then returns a new component that renders an instance of the passed in component. The rendered component will thus have access to the store.
+* Connecting React to Redux to access and manipulate the store involves the use of Higher Order Components (HOC). A HOC is simply a component which renders another component. It is implemented by using a wrapper function which takes in the component - that needs to access the store - as an argument. It then returns a new component that renders an instance of the passed in component.
+* After installing React-redux, the `Provider` component and the `connect()` function are imported and used to connect components to the store. The Provider component becomes the parent component which renders BrowserRouter and makes the store available.
+* The connect() function is called as an IIFE (Immediately-Invoked Function Expression) passing in the mapStateToProps callback (user-defined, which makes the state object available to the connected component. *This callback is not needed if the component does not need to read from the store.*) and immediately invoking with the component that needs to be connected into the function scope.
+* The ConnectedComponent will have access to the props made available to it by the HOC, and also the dispatch() function for dispatching actions to the store. Therefore, the component will be able to read from and write to the store.
+
+## Controlled Components
+* Controlled components have their input value driven by React state. An input, textarea or select element will have their values set to the current state, and as the state changes, the value of the input changes. 
+* For a select tag, the value is not set by using the `selected` attribute on a selected option as its done in html. In React, it is set by using a value attribute in the root select tag.
+* To use an event value in an event handler, the `e.target.value` needs to be assigned to a variable first, before setting it as a state property value. To use it as is, `e.persist()` needs to be called beforehand.
+* The `react-dates` library provides components such as the SingleDatePicker for selecting dates in React. It relies on the `moment` library as a dependency.

@@ -74,7 +74,7 @@ const humanOne = Human('one', 'two')
 
 
 // DESTRUCTURING EXAMPLES
-const myCar = { type: 'Tesla', origin: 'United State of America' }
+const myCar = { type: 'Tesla', origin: 'United State of America', features: { doors: 4, fuel: 'petrol' } }
 const cars = [
     { type: 'Honda', origin: 'Japan' },
     { type: 'Toyota', origin: 'Japan' },
@@ -92,8 +92,27 @@ const findCar = ([carOne, carTwo, carThree]) => {
 }
 // findCar(cars)
 
-const findMyCar = ({ type, origin }) => {
-    console.log(`My car is a ${type}, made in ${origin}`)
+const findMyCar = ({ type, origin, features }) => {
+    console.log(`My car is a ${type}, made in ${origin}. It has ${features.doors} doors and a ${features.fuel} engine.`)
 }
 
 findMyCar(myCar)
+
+
+// IIFE EXAMPLE
+
+// ((x, y) => {
+//     console.log(x * y)
+// })(5, 4)
+
+
+// ASYNC SIMULATION
+// console.log('Fetching from database ...')
+
+// const getMultiple = (x, y) => x * y
+
+// setTimeout(() => {
+//     console.log(getMultiple(3, 4))
+// }, 5000)
+
+// console.log('Continue running code')
