@@ -88,14 +88,23 @@ The React-router implements client-side routing.
 * Side Note: The object rest spread operator is useful for spreading an existing object into a new object, but also has the functionality to override any existing properties by defining new ones after the spread. It requires a babel plugin to function in React.
 * Redux Dev-Tools are also available as a Chrome Extension. Additional code gotten from the library docs website has to be added to the store file configuration for it to work.
 
-## React - Redux
+## REACT - REDUX
 * Connecting React to Redux to access and manipulate the store involves the use of Higher Order Components (HOC). A HOC is simply a component which renders another component. It is implemented by using a wrapper function which takes in the component - that needs to access the store - as an argument. It then returns a new component that renders an instance of the passed in component.
 * After installing React-redux, the `Provider` component and the `connect()` function are imported and used to connect components to the store. The Provider component becomes the parent component which renders BrowserRouter and makes the store available.
 * The connect() function is called as an IIFE (Immediately-Invoked Function Expression) passing in the mapStateToProps callback (user-defined, which makes the state object available to the connected component. *This callback is not needed if the component does not need to read from the store.*) and immediately invoking with the component that needs to be connected into the function scope.
 * The ConnectedComponent will have access to the props made available to it by the HOC, and also the dispatch() function for dispatching actions to the store. Therefore, the component will be able to read from and write to the store.
 
-## Controlled Components
+## CONTROLLED COMPONENTS
 * Controlled components have their input value driven by React state. An input, textarea or select element will have their values set to the current state, and as the state changes, the value of the input changes. 
 * For a select tag, the value is not set by using the `selected` attribute on a selected option as its done in html. In React, it is set by using a value attribute in the root select tag.
 * To use an event value in an event handler, the `e.target.value` needs to be assigned to a variable first, before setting it as a state property value. To use it as is, `e.persist()` needs to be called beforehand.
 * The `react-dates` library provides components such as the SingleDatePicker for selecting dates in React. It relies on the `moment` library as a dependency.
+
+## AUTOMATED TESTING
+* React automated testing is done with the Jest library, which is the most suitable for React applications. Test files use the test.js file extension, which enables Jest to locate these files appropriately. Test cases are defined using the `test()` global method, passing in a string as the first argument, and a callback function as the second argument.
+* Another global method `expect()` is used to make assertions with matchers such as `toBe()` which uses the triple equality operator to check if two results are the same. `toEqual()` is used to compare two objects, as toBe() will not work correctly for this use case. Any results which are dynamic in nature and cannot be predetermined, such as auto-generated ids, are tested with `expect.any()`, passing in the expected data type as an argument. This is asserting something about the type of a value, if we don't know what the exact value is going to be.
+* React, behind the scenes, dispatches an action type of `##INIT` to setup default values for state. The same action type is dispatched in the reducers test suite to test default state values.
+### Snapshot Testing
+* `Snapshot testing` tests React components to ascertain that they are rendering as they ought to, by creating a snapshot and comparing with a stored version of what it should be. Essentially, it tracks changes in components over time. The npm library `react-test-renderer` provides this functionality. Shallow test rendering renders only the given component, but full-DOM test rendering renders that component and its child component(s). A better alternative library is AirBnB's `enzyme` which has more functionality than react-test-renderer. It requires a few other dependencies and file configuration for full functionality.
+* Snapshots do not work properly for some use cases, in situations where libraries are used that provide data that is automatically updated over time. Jest provides functionality to *mock the libraries* in a `__mocks__` folder and specify the updated functionality that the test should use for comparison. To import the original module for mocking, `require.requireActual()` is used, instead of the import statement.
+* Test spies are mock functions created with `jest.fn()`. The mock function is called with defined arguments. And an assertion is done to check if the function was actually called with those arguments. This is particularly useful for simulating event handlers for form submission.
